@@ -16,6 +16,22 @@
       <td th:text="${company.name}"></td>
       <td th:text="${company.address}"></td>
       <td th:text="${company.city}"></td>
+      <td>
+      	<form th:action="@{deleteCompany}" th:object="${company}">
+      		<input type="text" th:value="${company.id}" name="id">
+      		<div class="d-grid">
+	             <button class="btn btn-primary btn-lg" id="submitButton" type="submit" name="submit">Delete</button>
+	        </div>
+      	</form>
+      </td>
+      <td>
+      	<form th:action="@{editCompany}" th:object="${company}">
+      		<input type="text" th:value="${company.id}" name="id">
+      		<div class="d-grid">
+	             <button class="btn btn-primary btn-lg" id="submitButton" type="submit" name="submit">Edit</button>
+	        </div>
+      	</form>
+      </td>
     </tr>  
   </tbody>
 </table>

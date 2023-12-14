@@ -17,4 +17,12 @@ public class CompanyService {
 	public List<Company> getCompanies(){
 		return cr.findAll();
 	}
+	
+	public void addCompany(Company c) {
+		cr.save(c);
+	}
+	
+	public void deleteCompany(Company c) {
+		cr.delete(c);
+	}
 }
