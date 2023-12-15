@@ -1,9 +1,13 @@
 package com.jacaranda.employeeProject.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,10 +15,17 @@ import jakarta.persistence.Table;
 public class Company {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	private String address;
 	private String city;
+	
+	@OneToMany(mappedBy="company")
+	private List<Employee> listEmployees;
+	
+	@OneToMany(mappedBy="company")
+	private List<CompanyProject> listComanyProjects;
 	
 	public int getId() {
 		return id;
@@ -39,6 +50,18 @@ public class Company {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public List<Employee> getListEmployees() {
+		return listEmployees;
+	}
+	public void setListEmployees(List<Employee> listEmployees) {
+		this.listEmployees = listEmployees;
+	}
+	public List<CompanyProject> getListComanyProjects() {
+		return listComanyProjects;
+	}
+	public void setListComanyProjects(List<CompanyProject> listComanyProjects) {
+		this.listComanyProjects = listComanyProjects;
 	}
 	@Override
 	public int hashCode() {

@@ -14,7 +14,10 @@
 	
 	          <form method="get" th:action="@{addCompanySave}" th:object="${company}">
 
-	           
+	            <div class="mb-3">
+	    			<label for="exampleInputEmail1" class="form-label">Id Company</label>
+	    			<input type="number" th:field="*{id}" class="form-control" id="id" name="id" placeholder="Enter Id Company" required>
+	            </div>
 	
 	            <div class="mb-3">
 	                <label for="exampleInputEmail1" class="form-label">Name</label>

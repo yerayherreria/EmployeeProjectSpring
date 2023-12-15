@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="layout/head :: head"></div>
+<body>
+<nav th:replace="layout/menu :: menuJacaranda"></nav>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">City</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr th:each="company : ${listCompanies}">
+      <td th:text="${company.name}"></td>
+      <td th:text="${company.address}"></td>
+      <td th:text="${company.city}"></td>
+      <td>
+      	<form th:action="@{deleteCompany}" th:object="${company}">
+      		<input type="text" th:value="${company.id}" name="id">
+      		<div class="d-grid">
+	             <button class="btn btn-primary btn-lg" id="submitButton" type="submit" name="submit">Delete</button>
+	        </div>
+      	</form>
+      </td>
+      <td>
+      	<form th:action="@{editCompany}" th:object="${company}">
+      		<input type="text" th:value="${company.id}" name="id">
+      		<div class="d-grid">
+	             <button class="btn btn-primary btn-lg" id="submitButton" type="submit" name="submit">Edit</button>
+	        </div>
+      	</form>
+      </td>
+    </tr>  
+  </tbody>
+</table>
+<div th:insert="layout/footer :: pie"></div>
+</body>
+</html>
