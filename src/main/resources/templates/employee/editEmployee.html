@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<div th:replace="layout/head :: head"></div>
+<body>
+	<nav th:replace="layout/menu :: menuJacaranda"></nav>
+	<div class="container px-5 my-5">
+	  <div class="row justify-content-center">
+	    <div class="col-lg-8">
+	      <div class="card border-0 rounded-3 shadow-lg">
+	        <div class="card-body p-4">
+	          <div class="text-center">
+	            <div class="h1 fw-light">Edit Employee</div>
+	          </div>
+	
+	          <form method="get" th:action="@{editEmployeeSave}" th:object="${employee}">
+	           
+	
+	            <div class="mb-3">
+	                <label for="exampleInputEmail1" class="form-label">First Name</label>
+	    			<input type="text" th:field="*{firstName}" class="form-control" id="firstName" name="firstName" placeholder="Enter firstName" required>
+	            </div>
+	
+				<div class="mb-3">
+	                <label for="exampleInputEmail1" class="form-label">Last Name</label>
+	    			<input type="text" th:field="*{lastName}" class="form-control" id="lastName" name="lastName" placeholder="Enter lastName" required>
+	            </div>
+	
+	            <div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Email</label>
+	    			<input type="email" th:field="*{email}" class="form-control" id="email" name="email" placeholder="Enter email" required>
+	            </div>
+	            
+	            <div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Gender</label>
+	    			<input type="text" th:field="*{gender}" class="form-control" id="gender" name="gender" placeholder="Enter gender" required>
+	            </div>
+	            
+	            <div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Company</label>
+					<select th:field="*{company}"  class="custom-select" id="company" name="company" required>
+							
+						<option  th:each="company : ${listCompanies}" th:value="${company.id}"  th:text="${company.name}"></option>							
+							 	
+					</select>
+	            </div>
+	           
+	           <div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Date of birth</label>
+	    			<input type="date" th:field="*{dateOfBirth}" class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="Enter dateOfBirth" required>
+	            </div>
+	            <div class="mb-3">
+					<label for="exampleInputEmail1" class="form-label">Password</label>
+	    			<input type="text" th:field="*{password}" class="form-control" id="password" name="password" placeholder="Enter password" required>
+					<input type="text" th:field="*{role}" class="form-control" id="role" name="role"  th:value="user" hidden>
+					
+	            </div>
+	            <div class="d-grid">
+	              	<button class="btn btn-primary btn-lg" id="submitButton" type="submit" name="submit">Edit</button>
+	            </div>
+	            
+	          </form>
+	          <div class="d-grid">
+	          		<span th:text="${edit}" class="alert alert-success"></span>
+	          </div>
+	          
+	          <!-- End of contact form -->
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<div th:insert="layout/footer :: pie"></div>
+</body>
+</html>

@@ -32,6 +32,7 @@ public class CompanyController {
 		Company comp = new Company();
 		model.addAttribute("company",comp);
 		
+		
 		return "company/addCompany";
 	}
 	
