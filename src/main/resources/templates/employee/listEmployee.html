@@ -42,6 +42,28 @@
     </tr>  
   </tbody>
 </table>
+	<div>
+		Total Items: <a th:text = "${totalItems}" />
+		<a th:if="${currentPage > 1}" th:href="@{./listEmployee?pageNumber=1}">
+		First</a>
+		<span th:unless="${currentPage > 1}">First</span>
+		<a th:if="${currentPage > 1}" th:href="@{'./listEmployee?pageNumber=' +
+		${currentPage - 1}}">Previous</a>
+		<span th:unless="${currentPage > 1}">Previous</span>
+		<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+		<a th:if="${currentPage != i}" th:href="@{'./listEmployee?
+		pageNumber=' + ${i}}" th:text="${i}"></a>
+		<span th:unless="${currentPage != i}">
+		<a th:text="${i}"></a></span>
+		&nbsp;
+		</span>
+		<a th:if="${currentPage < totalPages}" th:href="@{'./listEmployee?
+		pageNumber=' + ${currentPage + 1}}">Next</a>
+		<span th:unless="${currentPage < totalPages}">Next</span>
+		<a th:if="${currentPage < totalPages}" th:href="@{'./listEmployee?
+		pageNumber=' + ${totalPages}}">Last</a>
+		<span th:unless="${currentPage < totalPages}">Last</span>
+	</div>
 <div th:insert="layout/footer :: pie"></div>
 </body>
 </html>
