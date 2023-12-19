@@ -30,7 +30,7 @@ public class EmployeeController {
 		
 		model.addAttribute("listEmploye",listEmploye);*/
 		int pageNumber = entrada.orElse(1);
-		int espacio2 = espacio.orElse(10);
+		int espacio2 = espacio.orElse(15);
 		Page<Employee> page = es.findAll(pageNumber, espacio2);
 		
 		model.addAttribute("listEmploye",page);

@@ -30,7 +30,7 @@ public class EmployeeService {
 	}
 	
 	public Page<Employee> findAll(int pageNum, int pageSize){
-		Pageable pageable = PageRequest.of(pageNum -1, pageSize);
+		Pageable pageable = PageRequest.of(pageNum, pageSize);
 		return er.findAll(pageable);
 		}
 }
