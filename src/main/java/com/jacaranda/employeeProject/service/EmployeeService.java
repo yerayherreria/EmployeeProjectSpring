@@ -1,11 +1,13 @@
 package com.jacaranda.employeeProject.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.jacaranda.employeeProject.model.Employee;
@@ -29,8 +31,9 @@ public class EmployeeService {
 		er.delete(e);
 	}
 	
-	public Page<Employee> findAll(int pageNum, int pageSize){
-		Pageable pageable = PageRequest.of(pageNum, pageSize);
+	public Page<Employee> findAll(int pageNum, int pageSize, String fieldSort){
+		Pageable pageable = PageRequest.of(pageNum, pageSize,
+				Sort.by(fieldSort).ascending());
 		return er.findAll(pageable);
 		}
 }

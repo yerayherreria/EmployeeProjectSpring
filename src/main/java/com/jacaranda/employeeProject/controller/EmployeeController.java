@@ -25,13 +25,14 @@ public class EmployeeController {
 
 	
 	@GetMapping("/employee/listEmployee")
-	public String listEmployee(Model model,@RequestParam("pageNumber") Optional<Integer> entrada,@RequestParam("pageSize") Optional<Integer> espacio) {
+	public String listEmployee(Model model,@RequestParam("pageNumber") Optional<Integer> entrada,@RequestParam("pageSize") Optional<Integer> espacio,@RequestParam("order") Optional<String> order) {
 		/*List<Employee> listEmploye = es.getEmployees();
 		
 		model.addAttribute("listEmploye",listEmploye);*/
 		int pageNumber = entrada.orElse(1);
 		int espacio2 = espacio.orElse(15);
-		Page<Employee> page = es.findAll(pageNumber, espacio2);
+		String field = order.orElse("id");
+		Page<Employee> page = es.findAll(pageNumber, espacio2, field);
 		
 		model.addAttribute("listEmploye",page);
 		model.addAttribute("totalItems",page.getSize());
