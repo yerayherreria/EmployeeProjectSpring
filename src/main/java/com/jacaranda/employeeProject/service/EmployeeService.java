@@ -31,9 +31,14 @@ public class EmployeeService {
 		er.delete(e);
 	}
 	
-	public Page<Employee> findAll(int pageNum, int pageSize, String fieldSort){
+	public Page<Employee> findAll(int pageNum, int pageSize, String fieldSort ,String orderFieldSort){
+		
 		Pageable pageable = PageRequest.of(pageNum, pageSize,
 				Sort.by(fieldSort).ascending());
+		if(orderFieldSort.equals("desc")) {
+			 pageable = PageRequest.of(pageNum, pageSize,
+					Sort.by(fieldSort).descending());
+		} 
 		return er.findAll(pageable);
-		}
+	}
 }

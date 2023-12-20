@@ -25,19 +25,25 @@ public class EmployeeController {
 
 	
 	@GetMapping("/employee/listEmployee")
-	public String listEmployee(Model model,@RequestParam("pageNumber") Optional<Integer> entrada,@RequestParam("pageSize") Optional<Integer> espacio,@RequestParam("order") Optional<String> order) {
+	public String listEmployee(Model model,
+			@RequestParam("pageNumber") Optional<Integer> entrada,
+			@RequestParam("pageSize") Optional<Integer> espacio,
+			@RequestParam("order") Optional<String> order,
+			@RequestParam("modeOrder") Optional<String> modeOrder) {
 		/*List<Employee> listEmploye = es.getEmployees();
 		
 		model.addAttribute("listEmploye",listEmploye);*/
 		int pageNumber = entrada.orElse(1);
 		int espacio2 = espacio.orElse(15);
 		String field = order.orElse("id");
-		Page<Employee> page = es.findAll(pageNumber, espacio2, field);
+		String mode = modeOrder.orElse("asc");
+		Page<Employee> page = es.findAll(pageNumber, espacio2, field,mode);
 		
 		model.addAttribute("listEmploye",page);
 		model.addAttribute("totalItems",page.getSize());
 		model.addAttribute("totalPages",page.getTotalPages());
 		model.addAttribute("currentPage",page.getPageable().getPageNumber());
+		model.addAttribute("modeOrder",mode);
 		return "employee/listEmployee";
 	}
 	
