@@ -29,14 +29,14 @@ public class EmployeeController {
 			@RequestParam("pageNumber") Optional<Integer> entrada,
 			@RequestParam("pageSize") Optional<Integer> espacio,
 			@RequestParam("order") Optional<String> order,
-			@RequestParam("modeOrder") Optional<String> modeOrder) {
+			@RequestParam("modeOrder") Optional<Boolean> modeOrder) {
 		/*List<Employee> listEmploye = es.getEmployees();
 		
 		model.addAttribute("listEmploye",listEmploye);*/
 		int pageNumber = entrada.orElse(1);
 		int espacio2 = espacio.orElse(15);
 		String field = order.orElse("id");
-		String mode = modeOrder.orElse("asc");
+		Boolean mode = modeOrder.orElse(true);
 		Page<Employee> page = es.findAll(pageNumber, espacio2, field,mode);
 		
 		model.addAttribute("listEmploye",page);

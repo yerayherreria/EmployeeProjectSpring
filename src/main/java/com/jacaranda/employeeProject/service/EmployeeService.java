@@ -31,11 +31,11 @@ public class EmployeeService {
 		er.delete(e);
 	}
 	
-	public Page<Employee> findAll(int pageNum, int pageSize, String fieldSort ,String orderFieldSort){
+	public Page<Employee> findAll(int pageNum, int pageSize, String fieldSort ,Boolean orderFieldSort){
 		
 		Pageable pageable = PageRequest.of(pageNum, pageSize,
 				Sort.by(fieldSort).ascending());
-		if(orderFieldSort.equals("desc")) {
+		if(orderFieldSort) {
 			 pageable = PageRequest.of(pageNum, pageSize,
 					Sort.by(fieldSort).descending());
 		} 
